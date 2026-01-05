@@ -34,6 +34,7 @@ export default function RegisterScreen({ onRegister, onNavigate }: { onRegister:
                     data: {
                         full_name: fullName,
                     },
+                    emailRedirectTo: 'https://tracker-alpha-kohl.vercel.app/',
                 },
             });
 
