@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Job Application Intelligence System (PWA)
 
-## Getting Started
+A mobile-first Progressive Web App to track job applications, analyze performance, and improve results with brutally honest feedback.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Job Application Tracker**: Track company, role, status, and dates.
+- **Resume Version Management**: Compare performance of different resume versions.
+- **Ghosting Detection**: Automatically flags applications with no response.
+- **Analytics**: Daily activity, outcome distribution, and resume performance.
+- **PWA**: Installable on mobile and desktop.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend**: Next + TypeScript + Vite
+- **Styling**: Vanilla CSS (Variables based theme)
+- **Database**: Supabase (PostgreSQL)
+- **Icons**: Lucide React
+- **Charts**: Recharts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup Instructions
 
-## Learn More
+1.  **Supabase Setup**:
+    *   Create a new project on [Supabase](https://supabase.com/).
+    *   Go to the SQL Editor and run the contents of `supabase_schema.sql` to create the tables and security policies.
+    *   Go to Project Settings -> API and copy the `Project URL` and `anon` public key.
 
-To learn more about Next.js, take a look at the following resources:
+2.  **Environment Variables**:
+    *   Rename `.env.example` to `.env` (or create `.env` if not exists).
+    *   Add your Supabase credentials:
+        ```
+        VITE_SUPABASE_URL=your_project_url
+        VITE_SUPABASE_ANON_KEY=your_anon_key
+        ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4.  **Run Locally**:
+    ```bash
+    npm run dev
+    ```
 
-## Deploy on Vercel
+5.  **Build for Production**:
+    ```bash
+    npm run build
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## PWA
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app is configured as a PWA. To test the installability, build the app and serve it, or use the dev server (Vite PWA plugin is configured for dev too, but works best in build).
+
+## Project Structure
+
+- `src/components`: Reusable UI components (Layout, etc.)
+- `src/pages`: Application pages (Dashboard, Applications, etc.)
+- `src/lib`: Supabase client and API service.
+- `src/types`: TypeScript definitions.
+- `src/index.css`: Global styles and theme variables.
