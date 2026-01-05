@@ -39,7 +39,7 @@ export default function Resumes({ onNavigate }: { onNavigate?: (page: string) =>
         }
 
         // Fetch stats for each resume
-        const resumesWithStats = await Promise.all(resumeData.map(async (resume) => {
+        const resumesWithStats = await Promise.all(resumeData.map(async (resume: any) => {
             const { count: totalApps } = await supabase
                 .from('applications')
                 .select('*', { count: 'exact', head: true })
@@ -63,7 +63,7 @@ export default function Resumes({ onNavigate }: { onNavigate?: (page: string) =>
 
         // Determine best resume
         if (resumesWithStats.length > 0) {
-            const best = resumesWithStats.reduce((prev, current) =>
+            const best = resumesWithStats.reduce((prev: any, current: any) =>
                 parseFloat(current.rate) > parseFloat(prev.rate) ? current : prev
             );
             if (parseFloat(best.rate) > 0) {

@@ -43,12 +43,12 @@ export default function Dashboard({ onNavigate }: { onNavigate?: (page: string) 
 
             // Calculate Stats
             const today = new Date().toISOString().split('T')[0];
-            const appsToday = apps.filter(a => a.date_applied === today).length;
-            const pendingFollowUps = apps.filter(a => a.follow_up_date && new Date(a.follow_up_date) <= new Date() && a.status !== 'Rejected' && a.status !== 'Ghosted').length;
-            const ghosted = apps.filter(a => a.status === 'Ghosted').length;
+            const appsToday = apps.filter((a: any) => a.date_applied === today).length;
+            const pendingFollowUps = apps.filter((a: any) => a.follow_up_date && new Date(a.follow_up_date) <= new Date() && a.status !== 'Rejected' && a.status !== 'Ghosted').length;
+            const ghosted = apps.filter((a: any) => a.status === 'Ghosted').length;
             const totalApplications = apps.length;
-            const totalInterviews = apps.filter(a => a.status === 'Interview' || a.status === 'Offer').length;
-            const totalRejections = apps.filter(a => a.status === 'Rejected').length;
+            const totalInterviews = apps.filter((a: any) => a.status === 'Interview' || a.status === 'Offer').length;
+            const totalRejections = apps.filter((a: any) => a.status === 'Rejected').length;
             const interviewRate = totalApplications > 0 ? ((totalInterviews / totalApplications) * 100).toFixed(0) + '%' : '0%';
 
             setStats({
@@ -69,10 +69,10 @@ export default function Dashboard({ onNavigate }: { onNavigate?: (page: string) 
                 .eq('user_id', user.id);
 
             if (resumes) {
-                const leaderboard = resumes.map(resume => {
-                    const resumeApps = apps.filter(a => a.resume_version_id === resume.id);
+                const leaderboard = resumes.map((resume: any) => {
+                    const resumeApps = apps.filter((a: any) => a.resume_version_id === resume.id);
                     const count = resumeApps.length;
-                    const interviews = resumeApps.filter(a => a.status === 'Interview' || a.status === 'Offer').length;
+                    const interviews = resumeApps.filter((a: any) => a.status === 'Interview' || a.status === 'Offer').length;
                     const score = count > 0 ? ((interviews / count) * 100).toFixed(0) : '0';
 
                     return {
@@ -82,7 +82,7 @@ export default function Dashboard({ onNavigate }: { onNavigate?: (page: string) 
                         score: `${score}%`,
                         trend: 'neutral' // Placeholder for trend logic
                     };
-                }).sort((a, b) => parseFloat(b.score) - parseFloat(a.score)).slice(0, 3); // Top 3
+                }).sort((a: any, b: any) => parseFloat(b.score) - parseFloat(a.score)).slice(0, 3); // Top 3
 
                 setResumeLeaderboard(leaderboard);
             }

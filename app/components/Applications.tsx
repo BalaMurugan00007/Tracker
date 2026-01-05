@@ -56,7 +56,7 @@ export default function Applications({ onNavigate }: { onNavigate?: (page: strin
             if (error) throw error;
 
             // Optimistic update
-            setApplications(apps => apps.map(app =>
+            setApplications((apps: any[]) => apps.map((app: any) =>
                 app.id === id ? { ...app, status: newStatus } : app
             ));
             setEditingId(null);
@@ -68,9 +68,9 @@ export default function Applications({ onNavigate }: { onNavigate?: (page: strin
     // Calculate stats dynamically
     const stats = [
         { label: 'Total Applied', value: applications.length.toString(), change: '', color: 'var(--text-main)' },
-        { label: 'Interviews', value: applications.filter(a => a.status === 'Interview').length.toString(), change: '', color: 'var(--text-main)' },
-        { label: 'Offers', value: applications.filter(a => a.status === 'Offer').length.toString(), change: '', color: 'var(--text-main)' },
-        { label: 'Ghosted', value: applications.filter(a => a.status === 'Ghosted').length.toString(), change: '', color: 'var(--text-main)' },
+        { label: 'Interviews', value: applications.filter((a: any) => a.status === 'Interview').length.toString(), change: '', color: 'var(--text-main)' },
+        { label: 'Offers', value: applications.filter((a: any) => a.status === 'Offer').length.toString(), change: '', color: 'var(--text-main)' },
+        { label: 'Ghosted', value: applications.filter((a: any) => a.status === 'Ghosted').length.toString(), change: '', color: 'var(--text-main)' },
     ];
 
     return (
